@@ -14,6 +14,21 @@ return {
 					-- null_ls.builtins.formatting.gci,                 -- Добавляем gci
 					null_ls.builtins.formatting.goimports_reviser, -- Добавляем goimports-reviser
 					null_ls.builtins.formatting.golines, -- Добавляем golines
+					null_ls.builtins.formatting.gofmt, -- Добавляем gofmt
+
+					-- Форматирование Protobuf файлов с помощью buf format
+					null_ls.builtins.formatting.buf.with({
+						command = "buf",
+						args = { "format", "-" },
+						filetypes = { "proto" },
+					}),
+
+					-- Линтинг Protobuf файлов с помощью buf lint
+					null_ls.builtins.diagnostics.buf.with({
+						command = "buf",
+						args = { "lint", "--path", "$FILENAME" },
+						filetypes = { "proto" },
+					}),
 
 					-- Линтеры
 					-- null_ls.builtins.diagnostics.eslint,
@@ -27,6 +42,7 @@ return {
 
 			-- Настройка горячей клавиши для форматирования
 			vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
+            vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float, {})
 		end,
 	},
 }

@@ -10,7 +10,7 @@ return {
 		function _G.set_terminal_keymaps()
 			-- local opts = {buffer = 0}
 			-- Закрываем терминал при нажатии Esc
-			-- vim.keymap.set("t", "<esc>", [[<C-\><C-n><cmd>ToggleTerm<cr>]], {})
+			vim.keymap.set({ "t" }, "<esc>", [[<C-\><C-n><cmd>ToggleTerm<cr>]], {})
 		end
 
 		-- Используем точную автокоманду для буферов терминала, созданных плагином toggleterm
